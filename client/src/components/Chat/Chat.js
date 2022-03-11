@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router";
 
 import TextContainer from "../TextContainer/TextContainer";
 import Messages from "../Messages/Messages";
@@ -19,7 +19,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [flag, setFlag] = useState(0);
-  const ENDPOINT = "https://localhost:3000/";
+  const ENDPOINT = "http://localhost:5000/";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -56,7 +56,7 @@ const Chat = ({ location }) => {
   };
 
   if (flag) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -74,5 +74,5 @@ const Chat = ({ location }) => {
     </div>
   );
 };
-
+console.log(`Export chat`);
 export default Chat;
